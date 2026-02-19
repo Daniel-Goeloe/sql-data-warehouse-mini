@@ -1,14 +1,28 @@
 # SQL Data Warehouse Mini Project (PostgreSQL + Colima)
 
-A small portfolio project that builds a simple data warehouse using a **Bronze → Silver → Gold** pattern on PostgreSQL.
+A small **portfolio data engineering project** that builds a simple SQL data warehouse using a **Bronze → Silver → Gold** pattern on **PostgreSQL**.
 
-This setup follows a **no Docker Desktop** approach by using **Colima** as the local container runtime.
+It intentionally follows a **no Docker Desktop** approach by using **Colima** (with the `containerd` runtime) as the local container runtime.
+
+---
+
+## TL;DR (for recruiters)
+
+**What I built:** a mini end-to-end data warehouse pipeline that ingests raw CSVs, cleans/standardizes them, produces an analytics-ready star schema, runs basic data quality checks, and exposes simple revenue analytics (as queries and optional views).
+
+**What this demonstrates:**
+- Practical understanding of **layered warehouse design** (Bronze/Silver/Gold)
+- SQL transformations that turn raw data into a **star schema** (facts + dimensions)
+- Basic **data quality checks** (sanity constraints & validation queries)
+- Reproducible local setup with **PostgreSQL in a container** (without Docker Desktop)
+
+---
 
 ## What’s inside
 
 ### Layers
-- **Bronze**: raw ingestion tables loaded from CSV files
-- **Silver**: cleaned and standardized tables
+- **Bronze**: raw ingestion tables loaded from CSV files (minimal transformation)
+- **Silver**: cleaned and standardized tables (types, normalization, consistency)
 - **Gold**: analytics-ready star schema
   - `gold.dim_customer`
   - `gold.dim_product`
@@ -17,15 +31,5 @@ This setup follows a **no Docker Desktop** approach by using **Colima** as the l
 ### Project structure
 - `data/raw/` — sample CSV inputs
 - `sql/01_setup/` — schemas + bronze tables
-- `sql/02_load/` — load bronze from CSV
-- `sql/03_transform/` — build silver + gold
-- `sql/04_analytics/` — example analytics queries
-- `sql/05_quality/` — data quality checks
-
-## Prerequisites
-- macOS
-- Colima installed
-- Colima running with the `containerd` runtime
-
-
-
+- `sql/02_load/` — load bronze from CSV (`psql`/`\copy`)
+- `sql/03_transform/` — build
