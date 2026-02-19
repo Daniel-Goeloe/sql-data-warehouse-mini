@@ -27,10 +27,5 @@ This setup follows a **no Docker Desktop** approach by using **Colima** as the l
 - Colima installed
 - Colima running with the `containerd` runtime
 
-## Start Colima (containerd runtime)
-```bash
-colima start --runtime containerd
-colima status
 
-  EOF
 
